@@ -74,14 +74,10 @@ defmodule Observables.Obs do
     if link do
       {:ok, pid} = GenObservable.start_link(Range, [first, last, delay])
       Process.send_after(pid, {:event, :tick}, delay)
-      IO.puts("link")
-      IO.puts(delay)
       pid
     else
       {:ok, pid} = GenObservable.start(Range, [first, last, delay])
       Process.send_after(pid, {:event, :tick}, delay)
-      IO.puts("not linked")
-      IO.puts(delay)
       pid
     end
   end
